@@ -13,13 +13,17 @@
 </head>
 <body>
     <h1>Поиск фильма</h1>
-  <form id="search-form">
-    <label for="movie-title">Введите название фильма:</label>
-    <input type="text" id="movie-title" required>
-    <button type="submit">Поиск</button>
-  </form>
-  <div id="movie-info"></div>
-
+      <div class="screen">
+        <form id="search-form">
+          <div class="screen1a">
+            <label for="movie-title">Введите название фильма:</label>
+            <!-- <input type="text" id="movie-title" required> -->
+            <input type="text" name="text" id="movie-title" placeholder="Введите...">
+            <button type="submit">Поиск</button>
+          </div>
+        </form>
+          <div id="movie-info"></div>
+      </div>
     <script src="./script.js"></script>
 </body>
 </html>
