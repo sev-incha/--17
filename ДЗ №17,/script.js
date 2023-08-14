@@ -17,6 +17,43 @@ document.getElementById('search-form').addEventListener('submit', function(e) {
   
     xhr.send();
   });
+
+
+  function addMovieToFavorites() {
+    const movieInput = document.getElementById('movie-title');
+    const movieName = movieInput.value;
+  
+    // Очищаем введенное значение
+    movieInput.value = '';
+  
+    // Формируем URL для запроса к OMDb API
+    const apiKey = 'fb0d6426';
+    const apiUrl = `https://www.omdbapi.com/?apikey=${apiKey}&t=${encodeURIComponent(movieName)}`;
+  
+    // Отправляем GET запрос к OMDb API
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        if (data.Response === 'True') {
+          const movie = {
+            title: data.Title,
+            year: data.Year,
+            genre: data.Genre
+          };
+  
+          // Добавляем фильм в список избранного
+          const favoritesList = document.getElementById('favoritesList');
+          const movieItem = document.createElement('li');
+          movieItem.textContent = `${movie.title} (${movie.year}) - ${movie.genre}`;
+          favoritesList.appendChild(movieItem);
+        } else {
+          alert('Фильм не найден');
+        }
+      })
+      .catch(error => console.log(error));
+  }
+  
+
   
   function displayMovieInfo(movieData) {
     var movieInfoContainer = document.getElementById('movie-info');
